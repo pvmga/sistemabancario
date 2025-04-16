@@ -1,34 +1,33 @@
 @extends('layouts.main_layout')
 @section('content')
     <div class="max-w-3xl mx-auto">
-        <div class="flex justify-between items-center mb-4">
-            <h2 class="text-xl font-semibold">MiniBank Dashboard</h2>
-            <a href="login.html" class="text-red-500 hover:underline">Sair</a>
-        </div>
+        
+        @include('layouts.top_bar')
 
         <div class="bg-white p-6 rounded-2xl shadow mb-4">
-            <h3 class="text-lg font-medium">Olá, João! 👋</h3>
-            <p class="text-xl font-bold text-green-600">Saldo atual: R$ 1.250,00</p>
+            <h3 class="text-lg font-medium">Olá, {{ ucwords(session('user.name')) }} 👋</h3>
+            <p class="text-sm font-normal">Conta Corrente: {{ session('user.account') }}</p>
+            <p class="text-xl font-bold text-green-600">Saldo atual: R$ {{ number_format($user->balance, 2, ',', '.') }}</p>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
             <!-- Depositar -->
             <div class="bg-green-100 p-4 rounded-xl shadow">
                 <h4 class="font-semibold text-green-700 mb-2">💰 Depositar</h4>
-                <input type="number" placeholder="Valor (R$)" class="w-full p-2 mb-2 border rounded" />
+                <input type="text" placeholder="Valor (R$)" class="w-full p-2 mb-2 border rounded" id="depositar" />
                 <button class="w-full bg-green-500 text-white py-2 rounded hover:bg-green-600">Depositar</button>
             </div>
             <!-- Sacar -->
             <div class="bg-yellow-100 p-4 rounded-xl shadow">
                 <h4 class="font-semibold text-yellow-700 mb-2">📤 Sacar</h4>
-                <input type="number" placeholder="Valor (R$)" class="w-full p-2 mb-2 border rounded" />
+                <input type="text" placeholder="Valor (R$)" class="w-full p-2 mb-2 border rounded" id="sacar" />
                 <button class="w-full bg-yellow-500 text-white py-2 rounded hover:bg-yellow-600">Sacar</button>
             </div>
             <!-- Transferir -->
             <div class="bg-purple-100 p-4 rounded-xl shadow">
                 <h4 class="font-semibold text-purple-700 mb-2">🔄 Transferir</h4>
-                <input type="text" placeholder="Para (ex: Maria)" class="w-full p-2 mb-2 border rounded" />
-                <input type="number" placeholder="Valor (R$)" class="w-full p-2 mb-2 border rounded" />
+                <input type="text" placeholder="N° CC" class="w-full p-2 mb-2 border rounded" />
+                <input type="text" placeholder="Valor (R$)" class="w-full p-2 mb-2 border rounded" id="transferir"/>
                 <button class="w-full bg-purple-500 text-white py-2 rounded hover:bg-purple-600">Transferir</button>
             </div>
         </div>

@@ -11,5 +11,31 @@
 
     @yield('content')
 
+    {{-- <script src="https://unpkg.com/inputmask/dist/inputmask.min.js"></script> --}}
+    <script src="https://unpkg.com/imask"></script>
+    <script>
+        
+        mask('depositar');
+        mask('sacar');
+        mask('transferir');
+
+        function mask(id){
+            const input = document.getElementById(id);
+            const maskOptions = {
+            mask: 'R$ num',
+            blocks: {
+                num: {
+                mask: Number,
+                thousandsSeparator: '.',
+                radix: ',',
+                mapToRadix: ['.'],
+                scale: 2,
+                signed: false
+                }
+            }
+            };
+            IMask(input, maskOptions);
+        }
+    </script>
 </body>
 </html>
