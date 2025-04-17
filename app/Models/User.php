@@ -2,9 +2,22 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class User extends Model
 {
-    //
+    use HasFactory;
+
+    protected $fillable = [
+        'name',
+        'email',
+        'password',
+        'account',
+    ];
+
+    public function transaction()
+    {
+        return $this->hasMany(Transaction::class); // A user can have multiple transactions.
+    }
 }
