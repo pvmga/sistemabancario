@@ -14,7 +14,7 @@ class TransactionSeeders extends Seeder
 
         Transaction::create([
             'tipo_transacao' => 'Deposito',
-            'valor' => 500.00,
+            'valor' => 400.00,
             'conta_corrente_destino' => $user->account,
             'user_id' => $user->id,
         ]);

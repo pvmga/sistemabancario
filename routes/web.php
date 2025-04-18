@@ -18,6 +18,8 @@ Route::middleware([CheckIsLogged::class])->group(function () {
     Route::get('/dashboard', [MainController::class, 'dashboard'])->name('dashboard');
     Route::get('/editUser', [MainController::class, 'editUser'])->name('editUser');
     Route::post('/editUserSubmit', [MainController::class, 'editUserSubmit'])->name('editUserSubmit');
+    // Route::post('/newTransfer', [MainController::class, 'newTransfer'])->name('newTransfer');
+    Route::post('/newSaqueAndDepositoAndTransfer', [MainController::class, 'newSaqueAndDepositoAndTransfer'])->name('newSaqueAndDepositoAndTransfer');
 
 
     Route::get('/logout', [AuthController::class, 'logout'])->name('logout');

@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('transactions', function (Blueprint $table) {
             $table->id()->autoIncrement();
-            $table->enum('tipo_transacao', ['Deposito', 'Saque', 'Transferencia']); // Tipo da transação
+            $table->enum('tipo_transacao', ['Deposito', 'Saque', 'Transferencia', 'Recebida']); // Tipo da transação
             $table->decimal('valor', 15, 2); // Valor da transação (ex: 9999999999.99)
             $table->string('conta_corrente_destino'); // Conta Corrente de Destino
             $table->unsignedBigInteger('user_id'); // Relacionamento com a tabela users (id do usuário)
@@ -21,6 +21,7 @@ return new class extends Migration
 
             // Chave estrangeira
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('conta_corrente_destino')->references('account')->on('users')->onDelete('cascade');
         });
     }
 

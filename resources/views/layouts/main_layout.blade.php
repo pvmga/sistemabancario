@@ -22,7 +22,7 @@
         function mask(id){
             const input = document.getElementById(id);
             const maskOptions = {
-            mask: 'R$ num',
+            mask: 'num',
             blocks: {
                 num: {
                 mask: Number,

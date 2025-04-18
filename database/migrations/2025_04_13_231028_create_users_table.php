@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id()->autoIncrement();
             $table->string('email', 50)->nullable()->unique();
             $table->string('password', 200)->nullable();
-            $table->string('account', 15)->nullable();
+            $table->string('account', 15)->nullable()->unique();
             $table->dateTime('last_login')->nullable();
             $table->timestamps();
             $table->softDeletes();
