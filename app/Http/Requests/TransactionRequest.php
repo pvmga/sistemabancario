@@ -1,5 +1,4 @@
 <?php
-// app/Http/Requests/TransactionRequest.php
 
 namespace App\Http\Requests;
 
