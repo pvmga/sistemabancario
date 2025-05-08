@@ -15,20 +15,24 @@ class TransactionRequest extends FormRequest
     {
         $type = $this->input('text_type');
 
+        // regra comum entre as transações
         $common = [
             'text_type' => 'required|in:Deposito,Saque,Transferencia,Recebida',
         ];
 
+        // regra especifica de cadas transação
+        // match -> para verificar tipo de transação, caso encontre alguma das regras aplicará, caso contrário, entrará no default
         $typeRules = match ($type) {
-            'Deposito' => ['text_deposit' => 'required|numeric|min:0.01'],
-            'Saque' => ['text_sake' => 'required|numeric|min:0.01'],
+            'Deposito' => ['text_deposit' => 'required|min:0.01'],
+            'Saque' => ['text_sake' => 'required|min:0.01'],
             'Transferencia' => [
-                'text_value' => 'required|numeric|min:0.01',
+                'text_value' => 'required|min:0.01',
                 'text_account' => 'required|exists:users,account'
             ],
             default => [],
         };
 
+        // merge retorna sa regras comuns e especificas
         return array_merge($common, $typeRules);
     }
 

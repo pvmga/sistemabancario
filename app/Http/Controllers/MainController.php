@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\TransactionRequest;
 use App\Models\Transaction;
 use App\Models\User;
 use App\Services\Operations;
@@ -26,6 +27,7 @@ class MainController extends Controller
 
     public function editUser()
     {
+        $title = 'Editar usuário';
         $id = Operations::decryptId(session('user.id'));
 
         if ($id == null) {
@@ -34,7 +36,7 @@ class MainController extends Controller
 
         $user = Operations::getUser();
 
-        return view('edit_user', ['user' => $user]);
+        return view('edit_user', compact('title'), ['user' => $user]);
     }
 
     public function newUser(Request $request)
@@ -112,7 +114,7 @@ class MainController extends Controller
     // ]);
     // }
 
-    public function newSaqueAndDepositoAndTransfer(Request $request)
+    public function newSaqueAndDepositoAndTransfer(TransactionRequest $request)
     {
         $user = Operations::getUser();
         $type = $request->text_type;
